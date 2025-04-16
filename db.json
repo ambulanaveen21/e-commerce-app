@@ -1,0 +1,60 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "iPhone 14 Pro",
+      "price": 1099,
+      "image": "/iphone14.jpg",
+      "category": "phone"
+    },
+    {
+      "id": 2,
+      "name": "Samsung Galaxy S23 Ultra",
+      "price": 1199,
+      "image": "/samsung_phone.jpg",
+      "category": "phone"
+    },
+    {
+      "id": 3,
+      "name": "Google Pixel 7",
+      "price": 599,
+      "image": "/galaxy7.jpg",
+      "category": "phone"
+    },
+    {
+      "id": 4,
+      "name": "OnePlus 11",
+      "price": 699,
+      "image": "/oneplus11.jpg",
+      "category": "phone"
+    },
+    {
+      "id": 5,
+      "name": "Xiaomi 13 Pro",
+      "price": 799,
+      "image": "/xiomi13.jpg",
+      "category": "phone"
+    },
+    {
+      "id": 6,
+      "name": "Apple Watch Series 8",
+      "price": 399,
+      "image": "/apple_watch.jpg",
+      "category": "watch"
+    },
+    {
+      "id": 7,
+      "name": "Samsung Galaxy Watch 5",
+      "price": 329,
+      "image": "/samsung_watch.jpg",
+      "category": "watch"
+    },
+    {
+      "id": 8,
+      "name": "Garmin Fenix 7",
+      "price": 899,
+      "image": "/garmin.jpg",
+      "category": "watch"
+    }
+  ]
+}
