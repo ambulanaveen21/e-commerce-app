@@ -11,7 +11,7 @@
               <h3>{{ item.name }}</h3>
               <p>Price: ${{ item.price.toFixed(2) }}</p>
               <div class="quantity-controls">
-                <button @click="decreaseQuantity(index)">-</button>
+                <button @click="decreaseQuantity(index)" :disabled="item.quantity === 1">-</button>
                 <span>{{ item.quantity }}</span>
                 <button @click="increaseQuantity(index)">+</button>
               </div>
@@ -22,11 +22,31 @@
         </div>
 
         <div class="cart-summary">
-          <p>Subtotal: ${{ subtotal.toFixed(2) }}</p>
-          <p>Tax (10%): ${{ tax.toFixed(2) }}</p>
-          <p>
-            <strong>Total: ${{ total.toFixed(2) }}</strong>
-          </p>
+          <h2 class="summary-title">PRICE DETAILS</h2>
+
+          <div class="summary-row">
+            <span>Price ({{ totalItems }} items)</span>
+            <span>${{ subtotal.toFixed(2) }}</span>
+          </div>
+
+          <div class="summary-row">
+            <span>Discount (5%)</span>
+            <span class="discount">- ${{ discount.toFixed(2) }}</span>
+          </div>
+
+          <div class="summary-row">
+            <span>Tax (10%)</span>
+            <span>${{ tax.toFixed(2) }}</span>
+          </div>
+
+          <div class="summary-row total-row">
+            <span><strong>Total including Taxes & Shipping</strong></span>
+            <span
+              ><strong>${{ totalIncludingTaxesShipping.toFixed(2) }}</strong></span
+            >
+          </div>
+
+          <p class="savings-note">You will save ${{ discount.toFixed(2) }} on this order</p>
         </div>
 
         <button @click="checkout" class="checkout-button">Proceed to Checkout</button>
@@ -48,11 +68,26 @@ export default {
     subtotal() {
       return this.cart.reduce((sum, item) => sum + item.price * item.quantity, 0)
     },
-    tax() {
-      return this.subtotal * 0.1
+
+    discount() {
+      // Example: flat 5% discount
+      return this.subtotal * 0.05
     },
-    total() {
-      return this.subtotal + this.tax
+
+    tax() {
+      return (this.subtotal - this.discount) * 0.1
+    },
+
+    shipping() {
+      return this.subtotal - this.discount > 500 ? 0 : 40
+    },
+
+    totalIncludingTaxesShipping() {
+      return this.subtotal - this.discount + this.tax + this.shipping
+    },
+
+    totalItems() {
+      return this.cart.reduce((sum, item) => sum + item.quantity, 0)
     },
   },
   methods: {
@@ -83,7 +118,7 @@ export default {
   border-radius: 8px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
-  padding-top: -30px;
+  box-sizing: border-box;
 }
 
 .cart-title {
@@ -149,7 +184,6 @@ export default {
   margin-top: 5px;
 }
 
-/* Remove Button */
 .remove-button {
   background: #ff4d4d;
   color: white;
@@ -163,12 +197,13 @@ export default {
   background: #cc0000;
 }
 
-/* Cart Summary */
 .cart-summary {
   margin-top: 20px;
   text-align: left;
   border-top: 2px solid #ddd;
   padding-top: 15px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .cart-summary p {
@@ -176,7 +211,6 @@ export default {
   margin: 5px 0;
 }
 
-/* Checkout Button */
 .checkout-button {
   background: #28a745;
   color: white;
@@ -191,5 +225,60 @@ export default {
 
 .checkout-button:hover {
   background: #218838;
+}
+
+.quantity-controls button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.cart-summary {
+  margin-top: 20px;
+  text-align: left;
+  border-top: 2px solid #ddd;
+  padding-top: 15px;
+  line-height: 1.6;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.cart-summary h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.cart-summary p {
+  font-size: 15px;
+  margin: 10px 0;
+}
+
+.cart-summary {
+  border: 1px solid #ddd;
+  padding: 16px;
+  width: 100%;
+  background-color: #fafafa;
+  box-sizing: border-box;
+}
+
+.summary-title {
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 6px 0;
+}
+
+.total-row {
+  border-top: 1px solid #ccc;
+  padding-top: 10px;
+  margin-top: 10px;
+}
+
+.discount {
+  color: green;
 }
 </style>

@@ -58,12 +58,10 @@ export default {
     filteredAndSortedProducts() {
       let products = [...this.getProducts]
 
-      // Apply Category Filter (Only Mobiles and Watches)
       if (this.selectedCategory) {
         products = products.filter((product) => product.category === this.selectedCategory)
       }
 
-      // Apply Sorting
       if (this.selectedSort === 'price-asc') {
         products.sort((a, b) => a.price - b.price)
       } else if (this.selectedSort === 'price-desc') {
@@ -118,7 +116,6 @@ body {
   box-sizing: border-box;
 }
 
-/* Controls: Sort & Filter */
 .controls {
   display: flex;
   justify-content: center;

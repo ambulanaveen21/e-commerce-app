@@ -43,7 +43,6 @@ export default {
       if (this.isLoggedIn) {
         this.$store.commit('addToCart', product)
         alert('Product added to cart!')
-        this.$router.push('/')
       } else {
         alert('Please log in first.')
         this.$router.push('/login')

@@ -6,6 +6,7 @@ export default createStore({
     user: JSON.parse(localStorage.getItem('user')) || null,
     cart: JSON.parse(localStorage.getItem('cart')) || [],
     products: [],
+    orderDetails: null, // Store the order details after order is placed
   },
   mutations: {
     setUser(state, user) {
@@ -41,13 +42,16 @@ export default createStore({
       state.cart.splice(index, 1)
       localStorage.setItem('cart', JSON.stringify(state.cart))
     },
-    clearCart(state) {
-      state.cart = []
-      localStorage.removeItem('cart')
-    },
     updateQuantity(state, { index, amount }) {
       state.cart[index].quantity += amount
       localStorage.setItem('cart', JSON.stringify(state.cart))
+    },
+    setOrderDetails(state, payload) {
+      state.orderDetails = payload
+    },
+    clearCart(state) {
+      state.cart = []
+      localStorage.removeItem('cart')
     },
   },
   actions: {
@@ -59,8 +63,32 @@ export default createStore({
         console.error('Error fetching products:', error)
       }
     },
+
     logoutUser({ commit }) {
       commit('logout')
+    },
+
+    placeOrder({ commit, state }, payload) {
+      console.log('Order placed:', payload)
+
+      const staticOrderId = 'OD' + Math.floor(100000000 + Math.random() * 900000000)
+      const orderDetails = {
+        orderId: staticOrderId,
+        id: staticOrderId,
+        estimatedDeliveryDate: new Date(new Date().setDate(new Date().getDate() + 7)),
+        cart: state.cart,
+        shipping: payload.shipping,
+        payment: payload.payment,
+        total: state.cart.reduce((total, item) => total + item.price * item.quantity, 0),
+      }
+
+      commit('setOrderDetails', orderDetails)
+
+      if (state.user) {
+        localStorage.setItem(`cart_${state.user.id}`, JSON.stringify([]))
+      }
+
+      commit('clearCart')
     },
   },
   getters: {
@@ -70,5 +98,6 @@ export default createStore({
     isAuthenticated: (state) => !!state.user,
     cartCount: (state) => state.cart.reduce((count, item) => count + item.quantity, 0),
     cartTotal: (state) => state.cart.reduce((total, item) => total + item.price * item.quantity, 0),
+    getOrderDetails: (state) => state.orderDetails, // Get the stored order details
   },
 })

@@ -7,6 +7,14 @@
           <h1 class="product-title">{{ product.name }}</h1>
           <p class="product-price">$ {{ product.price }}</p>
           <p class="product-description">{{ product.description }}</p>
+
+          <div v-if="product.specs && product.specs.length" class="product-specs">
+            <h2>Specifications:</h2>
+            <ul>
+              <li v-for="(spec, index) in product.specs" :key="index">{{ spec }}</li>
+            </ul>
+          </div>
+
           <button class="add-to-cart-btn" @click="addToCart">🛒 Add to Cart</button>
         </div>
       </div>
@@ -66,52 +74,95 @@ export default {
 
 <style scoped>
 .product-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   background-color: #f5f5f5;
   padding: 30px 10px;
   min-height: 100vh;
-  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
 }
 
-.content {
-  width: 100%;
-  max-width: 400px; /* reduced from 600px */
-}
-
-.product-card {
+.product-content {
+  display: flex;
+  gap: 40px;
   background: white;
-  border-radius: 10px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-  padding: 16px; /* reduced from 20px */
-  text-align: center;
-  margin: 0 auto;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 1000px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.product-image-section {
+  flex: 1 1 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .product-image {
   width: 100%;
-  border-radius: 6px;
-  margin-bottom: 12px;
+  max-width: 400px;
+  border-radius: 10px;
+  object-fit: contain;
+}
+
+.product-details-section {
+  flex: 2 1 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .product-title {
-  font-size: 20px; /* smaller */
-  margin-bottom: 8px;
+  font-size: 28px;
+  font-weight: bold;
 }
 
 .product-price {
+  font-size: 24px;
+  color: #e53935;
+}
+
+.product-description {
+  font-size: 16px;
+  color: #555;
+}
+
+.product-specs h2 {
   font-size: 18px;
   margin-bottom: 8px;
 }
 
-.product-description {
+.product-specs ul {
+  padding-left: 20px;
+  list-style: disc;
+}
+
+.product-specs li {
   font-size: 14px;
-  margin-bottom: 16px;
+  margin-bottom: 6px;
 }
 
 .add-to-cart-btn {
+  padding: 10px 16px;
+  background-color: #ff9900;
+  color: #fff;
+  border: none;
   font-size: 16px;
-  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 16px;
+  width: fit-content;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #e68a00;
+}
+
+.loading {
+  font-size: 18px;
+  text-align: center;
 }
 </style>

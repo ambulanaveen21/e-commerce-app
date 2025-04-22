@@ -6,8 +6,12 @@
     <ul class="nav-links">
       <li><router-link to="/">Home</router-link></li>
       <li><router-link to="/products">Products</router-link></li>
-      <li>
-        <router-link to="/cart">🛒 Cart ({{ cartCount }})</router-link>
+      <li v-if="isAuthenticated">
+        <router-link to="/cart" class="cart-link">
+          <span class="cart-icon">🛒</span>
+          <span class="cart-text">Cart</span>
+          <span class="cart-count">({{ cartCount }})</span>
+        </router-link>
       </li>
       <li>
         <router-link to="/login" v-if="!isAuthenticated">🔑 Login</router-link>
@@ -61,6 +65,12 @@ export default {
 
 .nav-logo a:hover {
   color: #e44d28;
+}
+
+.cart-link {
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .nav-links {

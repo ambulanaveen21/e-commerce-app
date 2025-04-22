@@ -5,56 +5,120 @@
       "name": "iPhone 14 Pro",
       "price": 1099,
       "image": "/iphone14.jpg",
-      "category": "phone"
+      "category": "phone",
+      "description": "Apple's flagship smartphone with ProMotion display and A16 Bionic chip.",
+      "specs": [
+        "6.1-inch Super Retina XDR display",
+        "A16 Bionic chip",
+        "Triple 48MP camera system",
+        "Face ID",
+        "iOS 16"
+      ]
     },
     {
       "id": 2,
       "name": "Samsung Galaxy S23 Ultra",
       "price": 1199,
       "image": "/samsung_phone.jpg",
-      "category": "phone"
+      "category": "phone",
+      "description": "High-end Android phone with powerful camera and performance.",
+      "specs": [
+        "6.8-inch QHD+ Dynamic AMOLED display",
+        "Snapdragon 8 Gen 2",
+        "200MP main camera",
+        "S Pen support",
+        "Android 13"
+      ]
     },
     {
       "id": 3,
       "name": "Google Pixel 7",
       "price": 599,
       "image": "/galaxy7.jpg",
-      "category": "phone"
+      "category": "phone",
+      "description": "Clean Android experience with a brilliant camera powered by Tensor chip.",
+      "specs": [
+        "6.3-inch OLED display",
+        "Google Tensor G2",
+        "50MP main camera",
+        "Android 13",
+        "Face Unlock + Fingerprint sensor"
+      ]
     },
     {
       "id": 4,
       "name": "OnePlus 11",
       "price": 699,
       "image": "/oneplus11.jpg",
-      "category": "phone"
+      "category": "phone",
+      "description": "Smooth performance with a fast refresh rate display and clean OxygenOS.",
+      "specs": [
+        "6.7-inch AMOLED display",
+        "Snapdragon 8 Gen 2",
+        "Triple camera system",
+        "5000mAh battery with 100W fast charging",
+        "OxygenOS based on Android 13"
+      ]
     },
     {
       "id": 5,
       "name": "Xiaomi 13 Pro",
       "price": 799,
       "image": "/xiomi13.jpg",
-      "category": "phone"
+      "category": "phone",
+      "description": "Xiaomi’s premium phone with Leica-powered camera system.",
+      "specs": [
+        "6.73-inch AMOLED display",
+        "Snapdragon 8 Gen 2",
+        "50MP triple camera (Leica)",
+        "120W wired + 50W wireless charging",
+        "MIUI 14 based on Android 13"
+      ]
     },
     {
       "id": 6,
       "name": "Apple Watch Series 8",
       "price": 399,
       "image": "/apple_watch.jpg",
-      "category": "watch"
+      "category": "watch",
+      "description": "Smartwatch with advanced health features and crash detection.",
+      "specs": [
+        "Always-On Retina display",
+        "Temperature sensing",
+        "ECG app",
+        "Crash Detection",
+        "watchOS 9"
+      ]
     },
     {
       "id": 7,
       "name": "Samsung Galaxy Watch 5",
       "price": 329,
       "image": "/samsung_watch.jpg",
-      "category": "watch"
+      "category": "watch",
+      "description": "Fitness-focused smartwatch with durable sapphire glass and Wear OS.",
+      "specs": [
+        "1.4-inch AMOLED display",
+        "BioActive Sensor",
+        "Advanced sleep tracking",
+        "Sapphire crystal glass",
+        "Wear OS 3.5"
+      ]
     },
     {
       "id": 8,
       "name": "Garmin Fenix 7",
       "price": 899,
       "image": "/garmin.jpg",
-      "category": "watch"
+      "category": "watch",
+      "description": "Rugged multisport GPS watch with solar charging and long battery life.",
+      "specs": [
+        "1.3-inch sunlight-visible display",
+        "Multiband GNSS support",
+        "Up to 18 days battery (22 with solar)",
+        "Pulse Ox Sensor",
+        "Garmin OS"
+      ]
     }
   ]
 }
